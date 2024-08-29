@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
-    container_name: wordpress.
+    container_name: wordpress
     env_file:
       - .env
     depends_on:

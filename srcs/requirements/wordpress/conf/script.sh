@@ -16,10 +16,10 @@ wp core download --allow-root
 
 chown -R www-data:www-data /var/www/wordpress
 
-wp config create --dbhost=${WORDPRESS_DB_HOST} \
-				--dbname=${WORDPRESS_DB_NAME} \
-				--dbuser=${WORDPRESS_DB_USER} \
-				--dbpass=${WORDPRESS_DB_PASSWORD} \
+wp config create --dbhost=${WP_DB_HOST} \
+				--dbname=${WP_DB_NAME} \
+				--dbuser=${WP_DB_USER} \
+				--dbpass=${WP_DB_PASSWORD} \
 				--allow-root
 
 wp core install --url=${WP_URL} \
@@ -34,7 +34,7 @@ wp option get home --allow-root
 
 
 
-wp user create $WP_USER $WP_USER_MAIL --role=author --user_pass=$WP_USER_PASSWORD --allow-root
+wp user create ${WP_USER} ${WP_USER_MAIL} --role=author --user_pass=${WP_USER_PASSWORD} --allow-root
 # wp theme install astra --activate --allow-root
 # wp plugin install redis-cache --activate --allow-root
 # wp plugin update --all --allow-root
