@@ -48,6 +48,7 @@ services:
       - wordpress
     ports:
       - 443:443
+      - 80:80
     volumes:
       # - ./requirements/nginx/conf:/etc/nginx/conf.d
       - wp-volume:/var/www/wordpress

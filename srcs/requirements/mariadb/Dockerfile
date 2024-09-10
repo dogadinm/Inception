@@ -9,7 +9,7 @@ ARG MYSQL_DATABASE \
 EXPOSE 3306
 
 RUN apt-get update && apt-get install \
-	mariadb-server -y && \
+    mariadb-server=1:10.11.6-0+deb12u1 -y && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN rm /etc/mysql/mariadb.conf.d/50-server.cnf
