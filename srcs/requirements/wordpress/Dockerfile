@@ -6,4 +6,4 @@ RUN apt update -y && apt install php8.2 php-fpm php-mysql curl -y && \
 
 COPY ./requirements/wordpress/conf/script.sh /
 
-CMD [ "/script.sh" ]
+CMD [ "./script.sh" ]

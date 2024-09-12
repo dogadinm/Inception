@@ -6,7 +6,7 @@ networks:
 
 
 services: 
-  mariadb:
+  my_mariadb:
     build:
       context: .
       dockerfile: ./requirements/mariadb/Dockerfile
@@ -15,7 +15,8 @@ services:
         MYSQL_USER: ${MYSQL_USER}
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    container_name: mariadb
+    image: my_mariadb
+    container_name: my_mariadb
     ports:
       - "3306:3306"
     networks:
@@ -24,28 +25,30 @@ services:
       - db-volume:/var/lib/mysql
     restart: always
 
-  wordpress:
+  my_wordpress:
     build:
       context: .
       dockerfile: ./requirements/wordpress/Dockerfile
-    container_name: wordpress
+    image: my_wordpress
+    container_name: my_wordpress
     env_file:
       - .env
     depends_on:
-      - mariadb
+      - my_mariadb
     volumes:
       - wp-volume:/var/www/wordpress
     networks:
       - inception
 
 
-  nginx:
+  my_nginx:
     build:
       context: .
       dockerfile: ./requirements/nginx/Dockerfile
-    container_name: nginx
+    image: my_nginx
+    container_name: my_nginx
     depends_on: 
-      - wordpress
+      - my_wordpress
     ports:
       - 443:443
       - 80:80
@@ -61,13 +64,11 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/${USER}/data/wordpress
+      device: /home/mdogadin/data/wordpress
       o: bind
   db-volume:
     driver: local
     driver_opts:
       type: none
-      device: /home/${USER}/data/mariadb
+      device: /home/mdogadin/data/mariadb
       o: bind
-
-
