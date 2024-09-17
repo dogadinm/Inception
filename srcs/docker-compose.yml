@@ -39,7 +39,7 @@ services:
       - wp-volume:/var/www/wordpress
     networks:
       - inception
-
+    restart: always
 
   my_nginx:
     build:

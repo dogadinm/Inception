@@ -11,8 +11,16 @@ build:
 	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 down:
-	@printf "Stopping configuration ${name}...\n"
+	@printf "Downing configuration ${name}...\n"
 	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env down
+
+stop:
+	@printf "Stopping configuration ${name}...\n"
+	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env stop
+
+start:
+	@printf "Starting configuration ${name}...\n"
+	@docker-compose -f ./srcs/docker-compose.yml --env-file srcs/.env start
 
 re: down
 	@printf "Rebuild configuration ${name}...\n"
